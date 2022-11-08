@@ -7,15 +7,19 @@ const userInitialState: UserState = {
   userName: "",
   email: "",
   isLogged: false,
+  token: "",
 };
 
 const userSlice = createSlice({
   name: "robots",
   initialState: userInitialState,
   reducers: {
-    loadRobots: (previousUser, action: PayloadAction<User>) => ({
+    loginUser: (previousUser, action: PayloadAction<User>) => ({
       ...action.payload,
       isLogged: true,
     }),
   },
 });
+
+export const userReducer = userSlice.reducer;
+export const { loginUser: loginUserActionCreator } = userSlice.actions;
