@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store, RootState } from "../redux/store";
 import { robotsReducer } from "../redux/features/robots/robotsSlice";
 import { BrowserRouter } from "react-router-dom";
+import { userReducer } from "../redux/features/robots/userSlice";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -18,9 +19,7 @@ export const renderWithProviders = (
   {
     preloadedState,
     store = configureStore({
-      reducer: {
-        robots: robotsReducer,
-      },
+      reducer: { robots: robotsReducer, users: userReducer },
       preloadedState,
     }),
     ...renderOptions
@@ -37,4 +36,3 @@ export const renderWithProviders = (
   };
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 };
-
