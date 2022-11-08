@@ -11,7 +11,7 @@ const userInitialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: "robots",
+  name: "users",
   initialState: userInitialState,
   reducers: {
     loginUser: (previousUser, action: PayloadAction<User>) => ({

@@ -9,19 +9,22 @@ const useUser = () => {
   const url = process.env.REACT_APP_API_ROBOTS!;
 
   const getUserToken = async (userData: UserCredentials) => {
-    const responseData = await fetch(`${url}/login`, {
+    const responseData = await fetch(`${url}/users/login`, {
       method: "POST",
-      body: JSON.stringify(userData),
+      body: JSON.stringify({
+        username: userData.userName,
+        password: userData.password,
+      }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
 
-    const { token } = await responseData.json();
+    const { accessToken: token } = await responseData.json();
 
     const userLogged = decodeToken(token);
 
-    dispatch(loginUserActionCreator({ ...userLogged, token }));
+    dispatch(loginUserActionCreator({ ...userLogged, token: token }));
     localStorage.setItem("token", token);
   };
 
