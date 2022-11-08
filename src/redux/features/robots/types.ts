@@ -1,7 +1,9 @@
-import { Robot } from "../../../types";
+import { Robot, User } from "../../../types";
 
-interface RobotsState {
+export interface RobotsState {
   list: Robot[];
 }
 
-export default RobotsState;
+export interface UserState extends User {
+  isLogged: boolean;
+}

@@ -8,3 +8,10 @@ export interface Robot {
     creationDate: string;
   };
 }
+
+export interface User {
+  id: string;
+  userName: string;
+  email: string;
+  token?: string;
+}
