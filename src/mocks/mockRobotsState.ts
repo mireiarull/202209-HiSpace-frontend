@@ -1,4 +1,4 @@
-import RobotsState from "../redux/features/robots/types";
+import { RobotsState } from "../redux/features/robots/types";
 import { mockRobotsList } from "./mockRobots";
 
 const mockRobotsState: RobotsState = {

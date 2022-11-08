@@ -8,3 +8,21 @@ export interface Robot {
     creationDate: string;
   };
 }
+
+export interface User {
+  id: string;
+  userName: string;
+  email: string;
+  token: string;
+}
+
+export interface UserCredentials {
+  userName: string;
+  password: string;
+}
+
+export interface JwtPayloadCustom {
+  id: string;
+  userName: string;
+  email: string;
+}
