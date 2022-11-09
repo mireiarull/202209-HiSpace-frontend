@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import useApi from "../../hooks/useApi";
+import useToken from "../../hooks/useToken";
 import FormPage from "../../pages/FormPage";
 import HomePage from "../../pages/HomePage";
 
 const App = () => {
   const { loadRobotsApi } = useApi();
+  const { getToken } = useToken();
 
   useEffect(() => {
+    getToken();
     loadRobotsApi();
   });
 

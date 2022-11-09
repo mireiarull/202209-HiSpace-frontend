@@ -18,7 +18,6 @@ const LoginForm = (): JSX.Element => {
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,

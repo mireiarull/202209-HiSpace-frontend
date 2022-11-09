@@ -1,4 +1,7 @@
-import { loginUserActionCreator } from "../redux/features/robots/userSlice";
+import {
+  loginUserActionCreator,
+  logOutUserActionCreator,
+} from "../redux/features/robots/userSlice";
 import { useAppDispatch } from "../redux/hooks";
 import { UserCredentials } from "../types";
 import decodeToken from "../utils/decodeToken";
@@ -23,7 +26,6 @@ const useUser = () => {
     const { accessToken: token } = await responseData.json();
 
     const userLogged = decodeToken(token);
-    console.log(userLogged);
 
     dispatch(
       loginUserActionCreator({
@@ -35,7 +37,12 @@ const useUser = () => {
     localStorage.setItem("token", token);
   };
 
-  return { getUserToken };
+  const logOut = () => {
+    localStorage.setItem("token", "");
+    dispatch(logOutUserActionCreator());
+  };
+
+  return { getUserToken, logOut };
 };
 
 export default useUser;
