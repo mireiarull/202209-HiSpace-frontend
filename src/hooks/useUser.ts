@@ -23,8 +23,15 @@ const useUser = () => {
     const { accessToken: token } = await responseData.json();
 
     const userLogged = decodeToken(token);
+    console.log(userLogged);
 
-    dispatch(loginUserActionCreator({ ...userLogged, token: token }));
+    dispatch(
+      loginUserActionCreator({
+        ...userLogged,
+        userName: userData.userName,
+        token: token,
+      })
+    );
     localStorage.setItem("token", token);
   };
 

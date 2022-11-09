@@ -6,12 +6,13 @@ import { useAppSelector } from "../redux/hooks";
 
 const HomePage = () => {
   const loggedUser = useAppSelector(({ users }) => users.isLogged);
+  const userName = useAppSelector(({ users }) => users.userName);
 
   return (
     <>
       <Header />
       {!loggedUser && <LoginForm />}
-      {loggedUser && <h4>user logged in!</h4>}
+      {loggedUser && <h4>{`Welcome ${userName}!`}</h4>}
       <main className="container">
         <h2>Robots List</h2>
         <RobotFilter />

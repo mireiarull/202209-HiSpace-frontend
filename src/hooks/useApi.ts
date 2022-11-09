@@ -14,12 +14,18 @@ const { REACT_APP_API_ROBOTS: url_local_api_robots } = process.env;
 const useApi = () => {
   const dispatch = useAppDispatch();
 
+  const token = localStorage.getItem("token");
+
   const loadRobotsApi = useCallback(async () => {
-    const response = await fetch(`${url_local_api_robots}/robots`);
+    const response = await fetch(`${url_local_api_robots}/robots`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const robotResultApi = await response.json();
 
     dispatch(loadRobotsActionCreator(robotResultApi.robots));
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const loadRobotByIdApi = useCallback(
     async (id: string) => {
@@ -70,13 +76,16 @@ const useApi = () => {
         `${url_local_api_robots}/robots/delete/${id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       const robotResultApi = await response.json();
 
       dispatch(deleteOneRobotActionCreator(robotResultApi.robot));
     },
-    [dispatch]
+    [dispatch, token]
   );
 
   const updateOneRobotApi = useCallback(
