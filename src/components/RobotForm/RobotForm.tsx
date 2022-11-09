@@ -12,8 +12,7 @@ const RobotForm = (): JSX.Element => {
   const { id } = useParams<"id">();
 
   const loadRobotToUpdate = async (id: string) => {
-    const robotToUpdate = await loadRobotByIdApi(id);
-    console.log(robotToUpdate);
+    await loadRobotByIdApi(id);
   };
 
   if (id) {
