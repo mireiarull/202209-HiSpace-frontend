@@ -3,7 +3,7 @@ import {
   logOutUserActionCreator,
 } from "../redux/features/robots/userSlice";
 import { useAppDispatch } from "../redux/hooks";
-import { UserCredentials } from "../types";
+import { UserCredentials, UserRegisterCredentials } from "../types";
 import decodeToken from "../utils/decodeToken";
 
 const useUser = () => {
@@ -42,7 +42,20 @@ const useUser = () => {
     dispatch(logOutUserActionCreator());
   };
 
-  return { getUserToken, logOut };
+  const registerUser = async (userData: UserRegisterCredentials) => {
+    await fetch(`${url}/users/register`, {
+      method: "POST",
+      body: JSON.stringify({
+        username: userData.userName,
+        password: userData.password,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+  };
+
+  return { getUserToken, logOut, registerUser };
 };
 
 export default useUser;
