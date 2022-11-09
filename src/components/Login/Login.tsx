@@ -58,7 +58,7 @@ const LoginForm = (): JSX.Element => {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             onChange={handleFormChange}
